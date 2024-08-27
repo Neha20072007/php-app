@@ -45,4 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" id="mobile" name="mobile" value="<?php echo $user['mobile']; ?>" required><br>
 
         <label for="dob">Date of Birth:</label><br>
-        <input
+        <input type="date" id="dob" name="dob" value="<?php echo $user['dob']; ?>" required><br>
+
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
