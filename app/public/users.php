@@ -1,8 +1,23 @@
 <?php
+session_start(); // Start the session
 include '../src/db.php';
 
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../public/login.php"); // Redirect to login if not logged in
+    exit;
+}
+
+// Fetch all users from the database
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
+
+// Logout functionality
+if (isset($_POST['logout'])) {
+    session_destroy(); // Destroy the session
+    header("Location: ../public/login.php"); // Redirect to login page after logout
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,7 +73,7 @@ $result = $conn->query($sql);
         }
 
         /* Button Styles */
-        .view-profile-btn {
+        .view-profile-btn, .logout-btn {
             float: right;
             margin: 10px;
             padding: 10px 20px;
@@ -70,14 +85,26 @@ $result = $conn->query($sql);
             text-decoration: none;
         }
 
-        .view-profile-btn:hover {
+        .view-profile-btn:hover, .logout-btn:hover {
             background-color: #45a049; /* Darker green */
+        }
+
+        .logout-btn {
+            background-color: #f44336; /* Red for logout */
         }
     </style>
 </head>
 <body>
     <h2>List of Registered Users</h2>
+    
+    <!-- 'View Profile' button -->
     <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
+    
+    <!-- Logout button -->
+    <form method="post" style="display:inline;">
+        <input type="submit" name="logout" value="Logout" class="logout-btn">
+    </form>
+
     <table border="1">
         <tr>
             <th>First Name</th>
