@@ -122,10 +122,10 @@ if (isset($_POST['logout'])) {
         <?php if (!empty($logged_in_user['profile_image'])): ?>
             <img src="<?php echo htmlspecialchars($logged_in_user['profile_image']); ?>" alt="Profile Picture" class="profile-picture">
         <?php endif; ?>
-        Welcome, <?php echo htmlspecialchars($logged_in_user['firstname']) . ' ' . htmlspecialchars($logged_in_user['lastname']); ?>!
+        Welcome to UserNest 🪺, <?php echo htmlspecialchars($logged_in_user['firstname']) . ' ' . htmlspecialchars($logged_in_user['lastname']); ?>!
     </div>
 
-    <h2>List of Registered Users</h2>
+    <h2>Inspect List of Registered Users 🕊️</h2>
     
     <!-- 'View Profile' button -->
     <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
@@ -174,7 +174,7 @@ if (isset($_POST['logout'])) {
                 loginToast.className = 'toast show';
                 setTimeout(() => {
                     loginToast.className = loginToast.className.replace('show', '');
-                }, 3000);
+                }, 5000);
             }
 
             // Show delete toast if 'delete' parameter is present
@@ -183,7 +183,7 @@ if (isset($_POST['logout'])) {
                 deleteToast.className = 'toast show';
                 setTimeout(() => {
                     deleteToast.className = deleteToast.className.replace('show', '');
-                }, 3000);
+                }, 5000);
             }
 
             // Show edit toast if 'edit' parameter is present
@@ -192,7 +192,7 @@ if (isset($_POST['logout'])) {
                 editToast.className = 'toast show';
                 setTimeout(() => {
                     editToast.className = editToast.className.replace('show', '');
-                }, 3000);
+                }, 5000);
             }
         });
     </script>
