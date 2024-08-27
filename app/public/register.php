@@ -26,5 +26,8 @@
 
         <input type="submit" value="Register">
     </form>
+
+    <!-- Section for redirecting to login page -->
+    <p>Already registered? <a href="../public/login.php">Click here to login</a></p>
 </body>
 </html>

@@ -61,6 +61,9 @@
         <input type="submit" value="Login">
     </form>
 
+    <!-- Section for redirecting to registration page -->
+    <p>Not registered yet? <a href="../public/register.php">Click here to register</a></p>
+
     <!-- Toast Notification -->
     <div id="toast" class="toast">You have successfully registered!</div>
 
