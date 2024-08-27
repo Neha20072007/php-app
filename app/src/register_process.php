@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-$conn = new mysqli('localhost', 'root', '', 'user_management', "3306"); // Adjust port if needed
+$conn = new mysqli('localhost', 'root', '', 'user_management', "3306");
 
 // Check connection
 if ($conn->connect_error) {
