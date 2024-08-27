@@ -87,6 +87,7 @@ $result = $conn->query($sql);
     <!-- Toast Notifications -->
     <div id="loginToast" class="toast">You have successfully logged in!</div>
     <div id="deleteToast" class="toast">User has been successfully deleted!</div>
+    <div id="editToast" class="toast">User information has been successfully updated!</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -107,6 +108,15 @@ $result = $conn->query($sql);
                 deleteToast.className = 'toast show';
                 setTimeout(() => {
                     deleteToast.className = deleteToast.className.replace('show', '');
+                }, 3000);
+            }
+
+            // Show edit toast if 'edit' parameter is present
+            if (urlParams.get('edit') === 'success') {
+                const editToast = document.getElementById('editToast');
+                editToast.className = 'toast show';
+                setTimeout(() => {
+                    editToast.className = editToast.className.replace('show', '');
                 }, 3000);
             }
         });

@@ -18,7 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', mobile = '$mobile', dob = '$dob' WHERE id = $id";
     
     if ($conn->query($sql) === TRUE) {
-        header("Location: ../public/users.php");
+        // Redirect to users.php with success parameter
+        header("Location: ../public/users.php?edit=success");
+        exit();
     } else {
         echo "Error updating record: " . $conn->error;
     }
