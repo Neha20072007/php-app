@@ -26,10 +26,13 @@ $result = $conn->query($sql);
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
             padding: 16px;
             box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .toast.show {
             visibility: visible;
+            opacity: 1;
             -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
             animation: fadein 0.5s, fadeout 0.5s 2.5s;
         }
@@ -81,21 +84,29 @@ $result = $conn->query($sql);
         <?php endwhile; ?>
     </table>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">You have successfully logged in!</div>
+    <!-- Toast Notifications -->
+    <div id="loginToast" class="toast">You have successfully logged in!</div>
+    <div id="deleteToast" class="toast">User has been successfully deleted!</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            // Check if the URL has the 'login' parameter
             const urlParams = new URLSearchParams(window.location.search);
+
+            // Show login toast if 'login' parameter is present
             if (urlParams.get('login') === 'success') {
-                // Show the toast notification
-                const toast = document.getElementById('toast');
-                toast.className = 'toast show';
-                
-                // Hide the toast after 3 seconds
+                const loginToast = document.getElementById('loginToast');
+                loginToast.className = 'toast show';
                 setTimeout(() => {
-                    toast.className = toast.className.replace('show', '');
+                    loginToast.className = loginToast.className.replace('show', '');
+                }, 3000);
+            }
+
+            // Show delete toast if 'delete' parameter is present
+            if (urlParams.get('delete') === 'success') {
+                const deleteToast = document.getElementById('deleteToast');
+                deleteToast.className = 'toast show';
+                setTimeout(() => {
+                    deleteToast.className = deleteToast.className.replace('show', '');
                 }, 3000);
             }
         });
