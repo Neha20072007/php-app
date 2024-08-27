@@ -56,10 +56,28 @@ $result = $conn->query($sql);
             from { opacity: 1; }
             to { opacity: 0; }
         }
+
+        /* Button Styles */
+        .view-profile-btn {
+            float: right;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .view-profile-btn:hover {
+            background-color: #45a049; /* Darker green */
+        }
     </style>
 </head>
 <body>
     <h2>List of Registered Users</h2>
+    <a href="profile.php" class="view-profile-btn">View Profile</a>
     <table border="1">
         <tr>
             <th>First Name</th>
@@ -71,14 +89,14 @@ $result = $conn->query($sql);
         </tr>
         <?php while($row = $result->fetch_assoc()): ?>
         <tr>
-            <td><?php echo $row['firstname']; ?></td>
-            <td><?php echo $row['lastname']; ?></td>
-            <td><?php echo $row['email']; ?></td>
-            <td><?php echo $row['mobile']; ?></td>
-            <td><?php echo $row['dob']; ?></td>
+            <td><?php echo htmlspecialchars($row['firstname']); ?></td>
+            <td><?php echo htmlspecialchars($row['lastname']); ?></td>
+            <td><?php echo htmlspecialchars($row['email']); ?></td>
+            <td><?php echo htmlspecialchars($row['mobile']); ?></td>
+            <td><?php echo htmlspecialchars($row['dob']); ?></td>
             <td>
-                <a href="../src/update_user.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                <a href="../src/delete_user.php?id=<?php echo $row['id']; ?>">Delete</a>
+                <a href="../src/update_user.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a> |
+                <a href="../src/delete_user.php?id=<?php echo htmlspecialchars($row['id']); ?>">Delete</a>
             </td>
         </tr>
         <?php endwhile; ?>
