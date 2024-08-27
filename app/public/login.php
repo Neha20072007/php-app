@@ -138,13 +138,13 @@
         <div class="form-container">
             <h2>Login</h2>
             <form action="../src/login_process.php" method="post">
-                <label for="email">Email:</label>
+                <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="password">Password:</label>
+                <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
-                <input type="submit" value="Login">
+                <input type="submit" value="🍂Login🍂">
             </form>
 
             <p>Not registered yet? <a href="../public/register.php">Click here to register</a></p>

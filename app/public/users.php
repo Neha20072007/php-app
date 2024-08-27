@@ -31,76 +31,34 @@ if (isset($_POST['logout'])) {
 <head>
     <title>Registered Users</title>
     <style>
-        /* Toast container */
-        .toast {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
+        /* General Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1b1b1b;
+            color: #e6e6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
             text-align: center;
-            border-radius: 2px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            top: 30px; /* Position at the top */
-            font-size: 17px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-            padding: 16px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
         }
 
-        .toast.show {
-            visibility: visible;
-            opacity: 1;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        /* Welcome and Profile Section */
+        .welcome-title {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        @-webkit-keyframes fadein {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadein {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @-webkit-keyframes fadeout {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        @keyframes fadeout {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* Button Styles */
-        .view-profile-btn, .logout-btn {
-            float: right;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Green */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .view-profile-btn:hover, .logout-btn:hover {
-            background-color: #45a049; /* Darker green */
-        }
-
-        .logout-btn {
-            background-color: #f44336; /* Red for logout */
-        }
-
-        /* Profile picture */
         .profile-picture {
             border-radius: 50%;
             width: 50px;
@@ -108,16 +66,125 @@ if (isset($_POST['logout'])) {
             vertical-align: middle;
         }
 
-        /* Welcome title */
-        .welcome-title {
-            font-size: 24px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+        /* Button Styles */
+        .view-profile-btn, .logout-btn {
+            background-color: #44cc00;
+            color: #1b1b1b;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .view-profile-btn:hover {
+            background-color: #99ff66;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+        }
+
+        .logout-btn:hover {
+            background-color: #ff6666;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #2b2b2b;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #404040;
+        }
+
+        th {
+            background-color: #404040;
+            color: #e6e6e6;
+        }
+
+        td {
+            color: #b3b3b3;
+        }
+
+        a {
+            color: #99ff66;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Toast Styles */
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            top: 30px;
+            font-size: 17px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+            padding: 16px;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeout {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            table {
+                width: 100%;
+                font-size: 14px;
+            }
+            
+            .view-profile-btn, .logout-btn {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Display the user's profile picture and welcome title -->
+    <!-- User Welcome Section -->
     <div class="welcome-title">
         <?php if (!empty($logged_in_user['profile_image'])): ?>
             <img src="<?php echo htmlspecialchars($logged_in_user['profile_image']); ?>" alt="Profile Picture" class="profile-picture">
@@ -126,16 +193,17 @@ if (isset($_POST['logout'])) {
     </div>
 
     <h2>Inspect List of Registered Users 🕊️</h2>
-    
-    <!-- 'View Profile' button -->
-    <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
-    
-    <!-- Logout button -->
-    <form method="post" style="display:inline;">
-        <input type="submit" name="logout" value="Logout" class="logout-btn">
-    </form>
 
-    <table border="1">
+    <!-- View Profile and Logout buttons -->
+    <div>
+        <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
+        <form method="post" style="display:inline;">
+            <input type="submit" name="logout" value="Logout" class="logout-btn">
+        </form>
+    </div>
+
+    <!-- Users Table -->
+    <table>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
