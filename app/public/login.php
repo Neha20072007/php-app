@@ -76,7 +76,7 @@
                 // Hide the toast after 3 seconds
                 setTimeout(() => {
                     toast.className = toast.className.replace('show', '');
-                }, 3000);
+                }, 5000);
             }
         });
     </script>

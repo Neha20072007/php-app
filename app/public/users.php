@@ -8,6 +8,13 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$user_id = $_SESSION['user_id']; // Get the logged-in user's ID from the session
+
+// Fetch the logged-in user's details
+$user_sql = "SELECT firstname, lastname, profile_image FROM users WHERE id = $user_id";
+$user_result = $conn->query($user_sql);
+$logged_in_user = $user_result->fetch_assoc();
+
 // Fetch all users from the database
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
@@ -92,9 +99,32 @@ if (isset($_POST['logout'])) {
         .logout-btn {
             background-color: #f44336; /* Red for logout */
         }
+
+        /* Profile picture */
+        .profile-picture {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+        }
+
+        /* Welcome title */
+        .welcome-title {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
+    <!-- Display the user's profile picture and welcome title -->
+    <div class="welcome-title">
+        <?php if (!empty($logged_in_user['profile_image'])): ?>
+            <img src="<?php echo htmlspecialchars($logged_in_user['profile_image']); ?>" alt="Profile Picture" class="profile-picture">
+        <?php endif; ?>
+        Welcome, <?php echo htmlspecialchars($logged_in_user['firstname']) . ' ' . htmlspecialchars($logged_in_user['lastname']); ?>!
+    </div>
+
     <h2>List of Registered Users</h2>
     
     <!-- 'View Profile' button -->
