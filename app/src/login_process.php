@@ -12,8 +12,13 @@ if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     // Verify password
     if (password_verify($password, $user['password'])) {
-        // Redirect to user list
-        header("Location: ../public/users.php");
+        // Store user information in session
+        session_start();
+        $_SESSION['user_id'] = $user['id'];
+        
+        // Redirect to users.php with success parameter
+        header("Location: ../public/users.php?login=success");
+        exit();
     } else {
         echo "Invalid password.";
     }
