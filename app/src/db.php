@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";  // Change if your MySQL username is different
 $password = "";  // Replace with your MySQL root password
 $dbname = "user_management";  // Ensure this matches your database name
-$port = 3307;
+$port = 3306;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
