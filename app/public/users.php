@@ -53,12 +53,13 @@ if (isset($_POST['logout'])) {
 
         /* Welcome and Profile Section */
         .welcome-title {
-            font-size: 24px;
+            font-size: 36px; /* Increase font size */
+            font-weight: bold; /* Make text bold */
             margin-top: 20px;
             margin-bottom: 30px;
             text-align: center;
         }
-
+        
         .profile-picture {
             border-radius: 50%;
             width: 50px;
@@ -128,6 +129,19 @@ if (isset($_POST['logout'])) {
             text-decoration: underline;
         }
 
+        /* Ensure the container takes full width */
+        .button-container {
+            width: 100%;
+            text-align: right;
+        }
+
+        /* Optional: Add some spacing between buttons */
+        .button-container a,
+        .button-container form {
+            margin-left: 10px;
+        }
+
+
         /* Toast Styles */
         .toast {
             visibility: hidden;
@@ -184,6 +198,15 @@ if (isset($_POST['logout'])) {
     </style>
 </head>
 <body>
+
+    <!-- View Profile and Logout buttons -->
+    <div class="button-container">
+        <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
+        <form method="post" style="display:inline;">
+            <input type="submit" name="logout" value="Logout" class="logout-btn">
+        </form>
+    </div>
+
     <!-- User Welcome Section -->
     <div class="welcome-title">
         <?php if (!empty($logged_in_user['profile_image'])): ?>
@@ -193,14 +216,6 @@ if (isset($_POST['logout'])) {
     </div>
 
     <h2>Inspect List of Registered Users 🕊️</h2>
-
-    <!-- View Profile and Logout buttons -->
-    <div>
-        <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
-        <form method="post" style="display:inline;">
-            <input type="submit" name="logout" value="Logout" class="logout-btn">
-        </form>
-    </div>
 
     <!-- Users Table -->
     <table>

@@ -48,21 +48,101 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <title>Profile</title>
     <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1b1b1b;
+            color: #e6e6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        label {
+            font-size: 18px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px;
+            border: 1px solid #404040;
+            border-radius: 4px;
+            background-color: #333;
+            color: #e6e6e6;
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #44cc00; /* Green */
+            color: #1b1b1b;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #99ff66;
+        }
+
+        /* Button Styles */
         .button-container {
             margin-top: 20px;
-        }
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 10px 20px;
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
         }
+
+        .button {
+            background-color: #44cc00; /* Green */
+            color: #1b1b1b;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #99ff66;
+        }
+
     </style>
 </head>
 <body>
