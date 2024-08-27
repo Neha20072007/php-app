@@ -77,7 +77,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h2>List of Registered Users</h2>
-    <a href="profile.php" class="view-profile-btn">View Profile</a>
+    <a href="../src/profile.php" class="view-profile-btn">View Profile</a>
     <table border="1">
         <tr>
             <th>First Name</th>
