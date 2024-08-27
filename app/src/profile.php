@@ -47,6 +47,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Profile</title>
+    <style>
+        .button-container {
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h2>User Profile</h2>
@@ -65,9 +82,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <input type="submit" value="Update Profile">
     </form>
+
     <?php if (isset($user['profile_image']) && !empty($user['profile_image'])): ?>
         <h3>Current Profile Image:</h3>
         <img src="<?php echo htmlspecialchars($user['profile_image']); ?>" alt="Profile Image" width="150">
     <?php endif; ?>
+
+    <!-- Go to Dashboard Button -->
+    <div class="button-container">
+        <a href="../public/users.php" class="button">Go to Dashboard</a>
+    </div>
 </body>
 </html>
