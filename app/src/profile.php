@@ -1,7 +1,14 @@
 <?php
+session_start(); // Start the session
 include 'db.php';
 
-$id = 6; // Static ID for now, should be dynamic
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../public/login.php"); // Redirect to login if not logged in
+    exit;
+}
+
+$id = $_SESSION['user_id']; // Dynamic ID from session
 $sql = "SELECT * FROM users WHERE id = $id";
 $result = $conn->query($sql);
 $user = $result->fetch_assoc();
@@ -10,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $firstname = $_POST['firstname'];
     $email = $_POST['email'];
     $dob = $_POST['dob'];
-    
+
     // Handle image upload
     if (isset($_FILES["profile_image"]) && $_FILES["profile_image"]["error"] == 0) {
         $target_dir = "../resources/";
@@ -29,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($conn->query($sql) === TRUE) {
         echo "Profile updated!";
+        header("Location: profile.php"); // Refresh to reflect changes
+        exit;
     } else {
         echo "Error updating profile: " . $conn->error;
     }
