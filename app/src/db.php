@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";  // Change if your MySQL username is different
-$password = "root";  // Replace with your MySQL root password
+$password = "";  // Replace with your MySQL root password
 $dbname = "user_management";  // Ensure this matches your database name
 $port = 3307;
 
