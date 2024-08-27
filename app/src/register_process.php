@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-$conn = new mysqli('localhost', 'root', '', 'user_management', "3307");
+$conn = new mysqli('localhost', 'root', '', 'user_management', 3307);
 
 // Check connection
 if ($conn->connect_error) {
@@ -24,7 +24,9 @@ $sql = "INSERT INTO users (firstname, lastname, email, mobile, password, dob)
         VALUES ('$firstname', '$lastname', '$email', '$mobile', '$password', '$dob')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Registration successful!";
+    // Registration successful, redirect to login page
+    header("Location: ../public/login.php");
+    exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
